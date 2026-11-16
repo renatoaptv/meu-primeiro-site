@@ -1,48 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renato e o coração que segue batendo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: fotos grandes alternando com texto curto, como um álbum de família que vira um pedido de ajuda */
+  --paper: #f3f5f8;
+  --card: #ffffff;
+  --ink: #15203a;
+  --muted: #56607a;
+  --line: #d9dee8;
+  --heart: #cf2338;
+  --heart-soft: #fbe6e9;
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1524; --card: #182037; --ink: #eef1f7; --muted: #a5aec4;
+    --line: #2a3452; --heart: #ff5a6e; --heart-soft: #3a1c27; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1524; --card: #182037; --ink: #eef1f7; --muted: #a5aec4;
+  --line: #2a3452; --heart: #ff5a6e; --heart-soft: #3a1c27; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); }
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); }
+p { margin: 0; max-width: 62ch; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+section { padding: 56px 0; }
+.eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--heart); display: flex; align-items: center; gap: 8px; }
+
+/* Hero */
+.hero { padding-top: 40px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.hero-text { display: flex; flex-direction: column; gap: 20px; }
+.hero-text p { color: var(--muted); font-size: 1.15rem; }
+.hero-photo { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px -24px rgba(21,32,58,.45); }
+.hero-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 20%; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { font: 600 1rem var(--body); padding: 14px 22px; border-radius: 999px; border: 2px solid var(--heart); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-main { background: var(--heart); color: #fff; }
+.btn-ghost { background: transparent; color: var(--heart); }
+.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* Pulse line */
+.pulse { width: 100%; height: 40px; color: var(--heart); }
+@media (prefers-reduced-motion: no-preference) {
+  .pulse path { stroke-dasharray: 600; animation: beat 3.2s ease-in-out infinite; }
+  @keyframes beat { 0% { stroke-dashoffset: 600; } 60%, 100% { stroke-dashoffset: 0; } }
+}
+
+/* Gallery */
+.section-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.section-head p { color: var(--muted); }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+figure { margin: 0; background: var(--card); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+figure img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+figcaption { padding: 12px 16px 16px; font-size: .95rem; color: var(--muted); }
+figcaption strong { color: var(--ink); display: block; font-weight: 600; }
+
+/* Story */
+.story { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.story-text { display: flex; flex-direction: column; gap: 18px; }
+.facts { display: flex; flex-direction: column; gap: 12px; }
+.fact { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 14px; background: var(--paper); border-left: 4px solid var(--heart); }
+.fact b { display: block; }
+.fact span { color: var(--muted); font-size: .95rem; }
+
+/* Me */
+.me { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* Help */
+.help-box { background: var(--heart-soft); border-radius: 24px; padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.ways { display: flex; flex-direction: column; gap: 14px; }
+.way { background: var(--card); border-radius: 14px; padding: 18px; border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.way h3 { margin: 0; font-size: 1.05rem; }
+.way p { color: var(--muted); font-size: .95rem; }
+.pix { font-family: ui-monospace, Menlo, monospace; font-size: 1rem; background: var(--paper); padding: 10px 12px; border-radius: 8px; word-break: break-all; border: 1px dashed var(--line); }
+.copy-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.small-btn { font: 600 .9rem var(--body); padding: 8px 14px; border-radius: 999px; background: var(--heart); color: #fff; border: 0; cursor: pointer; }
+.small-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.ok { font-size: .85rem; color: var(--heart); font-weight: 600; min-height: 1em; }
+
+footer { padding: 40px 0 56px; text-align: center; color: var(--muted); font-size: .95rem; }
+footer p { margin: 0 auto; }
+
+@media (max-width: 820px) {
+  .hero-grid, .story-grid, .help-box { grid-template-columns: 1fr; }
+  .hero-photo { order: -1; }
+  .gallery, .me { grid-template-columns: 1fr 1fr; }
+  .help-box { padding: 24px; }
+}
+@media (max-width: 440px) {
+  body { font-size: 17px; }
+  .gallery, .me { grid-template-columns: 1fr; }
+  section { padding: 40px 0; }
+}
+</style>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <a class="marca" href="index.html">Byte Burguer</a>
 
-            <a href="index.html">| Cardapio</a>
-            <a href="index.html">Reserva</a>
-        </nav>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2.1 0 3.6 1.2 4.4 2.5.8-1.3 2.3-2.5 4.4-2.5 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+        A minha história
+      </div>
+      <h1>Eu sou o Renato, pai, e quero continuar aqui.</h1>
+      <p>Meu coração precisa de uma cirurgia de alta complexidade. Perdi meu plano de saúde no meio do caminho. Fiz esta página para mostrar quem eu sou, quem depende de mim e como você pode me ajudar a seguir em frente.</p>
+      <div class="btns">
+        <a class="btn btn-main" href="#ajudar">Quero ajudar</a>
+        <a class="btn btn-ghost" href="#familia">Ver nossa história</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/selecao.jpg" alt="Renato e o filho com camisas azuis da seleção brasileira, os dois fazendo sinal com os dedos e rindo">
+    </div>
+  </div>
+</header>
 
+<div class="wrap" aria-hidden="true">
+  <svg class="pulse" viewBox="0 0 600 40" preserveAspectRatio="none">
+    <path d="M0 20 H220 L240 20 L252 4 L266 36 L280 10 L292 20 H600" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>
+</div>
 
-    </header>
+<section id="familia">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Meu motivo</div>
+      <h2>O melhor motivo do mundo para ficar</h2>
+      <p>Meu filho é a parte mais bonita da minha vida. Cada sorriso dele nestas fotos é um motivo para eu lutar. Quero estar presente nos próximos jogos, nas próximas festas, nos próximos domingos no sofá.</p>
+    </div>
+    <div class="gallery">
+      <figure>
+        <img src="img/sofa.jpg" alt="Renato e o filho deitados lado a lado num sofá cinza, sorrindo para a câmera" loading="lazy">
+        <figcaption><strong>Os nossos domingos</strong>Nós dois no sofá, do jeito que eu mais gosto.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/festa.jpg" alt="Renato com o filho no colo numa festa, o menino de camisa branca acenando" loading="lazy">
+        <figcaption><strong>No meu colo</strong>Ele abraçado no meu pescoço, acenando para a foto.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/selecao.jpg" alt="Pai e filho com uniformes iguais da seleção brasileira" loading="lazy">
+        <figcaption><strong>Dia de jogo do Brasil</strong>Uniformes combinando e a torcida mais animada da casa.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
+<section class="story" id="historia">
+  <div class="wrap story-grid">
+    <div class="story-text">
+      <div class="eyebrow">O que está acontecendo</div>
+      <h2>Meu coração precisa de cuidado agora</h2>
+      <p>Descobri um problema cardíaco e os médicos indicaram uma cirurgia de alta complexidade. É o tipo de procedimento que não dá para adiar por muito tempo.</p>
+      <p>No meio disso, perdi meu plano de saúde. Agora estou correndo atrás de todos os caminhos para conseguir operar a tempo, e não consigo fazer isso sozinho.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><div><b>O diagnóstico</b><span>Problema cardíaco com indicação de cirurgia de alta complexidade.</span></div></div>
+      <div class="fact"><div><b>O obstáculo</b><span>Fiquei sem plano de saúde para cobrir a cirurgia.</span></div></div>
+      <div class="fact"><div><b>O objetivo</b><span>Fazer a cirurgia, me recuperar e voltar para casa, para o meu filho.</span></div></div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <h1>Teste</h1>
-        <p>Paragrafo 1
-        <p>Paragrafo 2 </p>
-        </p>
+<section id="eu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Quem eu sou</div>
+      <h2>Pai, trabalhador, flamenguista</h2>
+      <p>Sou de sorriso fácil, gosto de gente, de praia e de futebol. Trabalho duro e levo a vida com bom humor, mesmo nos dias difíceis.</p>
+    </div>
+    <div class="me">
+      <figure>
+        <img src="img/praia.jpg" alt="Renato de óculos escuros e camisa do Flamengo num mirante à beira-mar" loading="lazy">
+        <figcaption><strong>Mar e Mengão</strong>Duas paixões numa foto só.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/natal.jpg" alt="Renato sorrindo ao lado de uma árvore de Natal decorada em vermelho e dourado" loading="lazy">
+        <figcaption><strong>Natal no trabalho</strong>O sorriso que os colegas conhecem.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/retrato.jpg" alt="Selfie de Renato em casa, de suéter azul-marinho e camisa branca" loading="lazy">
+        <figcaption><strong>Em casa</strong>Pronto para mais um dia.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
-        <span>Span</span>
+<section id="ajudar">
+  <div class="wrap">
+    <div class="help-box">
+      <div class="story-text">
+        <div class="eyebrow">Como ajudar</div>
+        <h2>Qualquer ajuda me aproxima da cirurgia</h2>
+        <p>Pode ser uma contribuição de qualquer valor ou uma mensagem de força. Tudo isso conta, e eu agradeço de coração.</p>
+      </div>
+      <div class="ways">
+        <div class="way">
+          <h3>Contribua pelo PIX</h3>
+          <p>Chave PIX (CPF) em nome de Renato:</p>
+          <div class="pix" id="pixKey" data-copy="93575840210">935.758.402-10</div>
+          <div class="copy-row">
+            <button class="small-btn" id="copyPix" type="button">Copiar chave PIX</button>
+            <span class="ok" id="pixOk" role="status"></span>
+          </div>
+        </div>
+        <div class="way">
+          <h3>Mande uma mensagem</h3>
+          <p>Uma palavra de apoio faz diferença nos dias de espera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<footer>
+  <div class="wrap">
+    <p>Obrigado por chegar até aqui. Cada pessoa que lê esta página já faz parte da minha recuperação.</p>
+  </div>
+</footer>
 
-
-    </main>
-
-
-
-    <footer>
-
-
-
-    </footer>
-
-
-
-
-
+<script>
+function copyText(text, okId) {
+  var ok = document.getElementById(okId);
+  try {
+    navigator.clipboard.writeText(text).then(function () { ok.textContent = "Copiado!"; },
+      function () { ok.textContent = "Não deu para copiar. Selecione e copie à mão."; });
+  } catch (e) { ok.textContent = "Não deu para copiar. Selecione e copie à mão."; }
+}
+document.getElementById("copyPix").addEventListener("click", function () {
+  copyText(document.getElementById("pixKey").getAttribute("data-copy"), "pixOk");
+});
+</script>
 </body>
+</html>
